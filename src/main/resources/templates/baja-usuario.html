@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+
+<html lang="es-AR" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+    <head th:replace="/fragment/head :: head"></head>
+
+    <body>
+        
+        <header th:replace="/fragment/header :: header"></header>
+
+        <nav th:replace="/fragment/encabezado :: navbar"></nav>
+
+        <main>
+
+            <section class="conteiner-configuracion" id="contrasenia">
+
+                <section class="conteiner-opciones-configuracion">
+
+                    <section class="opciones-configuracion">
+
+                        <div class="box-opciones-configuracion">
+                            <a th:href="@{/usuario/editar-usuario(id=${session.usuario.id})}"><button type="button">Personalizar perfil</button></a>
+                        </div>
+
+                        <div class="box-opciones-configuracion">
+                            <a th:href="@{/usuario/editar-nombre(id=${session.usuario.id})}"><button type="button">Editar nombre de usuario</button></a>
+                        </div>
+
+                        <div class="box-opciones-configuracion">
+                            <a th:href="@{/usuario/editar-contrasena(id=${session.usuario.id})}"><button type="button">Editar contraseña</button></a>
+                        </div>
+
+                        <div class="box-opciones-configuracion">
+
+                            <a th:href="@{/usuario/editar-email(id=${session.usuario.id})}"><button type="button">Editar correo electrónico</button></a>
+
+                        </div>
+
+                        <div class="box-opciones-configuracion">
+                            <a th:href="@{/usuario/baja-usuario(id=${session.usuario.id})}" ><button type="button" class="active">Desactivar Cuenta</button></a>
+                        </div>
+
+                    </section>
+
+                </section>
+
+
+                <section class="conteiner-formulario-cambiar">
+
+                    <form th:action="@{/usuario/baja}" method="POST">
+
+                        <header>
+
+                            <h1>Desactivar su Cuenta</h1>
+
+                            <div class="instruccion">
+                                <p>Complete los siguientes campos requeridos para <b>desactivar su cuenta</b> y
+                                    presione el botón de "guardar" para confirmar los cambios:</p>
+                            </div>
+
+                            <div th:replace="/fragment/errores :: errores"></div>
+
+                        </header>
+
+
+                        <section class="conteiner-ingreso-datos">
+
+                            <section class="ingreso-datos">
+
+                                <div>
+                                    <input th:value="${id}" type="hidden" name="id">
+                                </div>
+
+                                <div class="box-ingreso-dato">
+
+                                    <label for="contrasena">Ingrese su <b>contraseña</b>:</label><br>
+
+                                    <div class="caja-texto">
+                                        <input type="password" class="form-control" id="contrasena"
+                                               name="contrasena" placeholder="Ingrese su contraseña"
+                                               aria-label="Username" aria-describedby="basic-addon1">
+                                    </div>
+
+                                </div>
+                                
+                            </section>
+
+                        </section>
+
+
+                        <section class="conteiner-botones">
+
+                            <div class="box-boton-resetear">
+
+                                <button type="reset" class="boton-resetear">
+
+                                    <svg xmlns="http://www.w3.org/2000/svg" style="color: white;" width="16" height="16"
+                                         fill="currentColor" class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                          d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z" />
+                                    <path
+                                        d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z" />
+                                    </svg>
+
+                                </button>
+
+                            </div>
+
+                            <div class="box-boton-guardar">
+                                <button type="submit" class="boton-guardar">Guardar</button>
+                            </div>
+
+                        </section>
+
+                    </form>
+
+                </section>
+
+            </section>
+
+        </main>
+
+        <footer th:replace="/fragment/footer :: footer"></footer>
+
+        <div th:replace="/fragment/bootstrap :: bootstrap"></div>
+
+    </body>
+
+</html>

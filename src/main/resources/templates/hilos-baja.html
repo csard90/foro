@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+
+<html lang="es-AR" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+    <head th:replace="/fragment/head :: head"></head>
+
+    <body>
+
+        <header th:replace="/fragment/header :: header"></header>
+
+        <nav th:replace="/fragment/encabezado :: navbar"></nav>
+
+        <main>
+
+            <section class="hilos">
+
+                <section class="conteiner-hilos-aside">
+
+                    <section class="conteiner-hilos">
+
+                        <header class="conteiner-titulo-descripcion">
+
+                            <section class="conteiner-titulo">
+
+                                <h1 th:text="${categoria.nombre}"></h1>
+
+                            </section>
+
+                            <section class="conteiner-descripcion">
+                                <p th:text="${categoria.descripcion}"></p>
+                            </section>
+
+                        </header>
+
+                        <div class="conteiner-botones-crear-hilos-inactivos">
+
+
+                            <div class="box-boton-hilos-activos" sec:authorize="hasRole('ROLE_ADMIN')">
+                                <a th:href="@{/hilos(id=${categoria.id})}"><button class="boton-hilos-inactivos">Hilos
+                                        activos</button></a>
+                            </div>
+
+                        </div>
+
+                        <div th:each="h : ${hilos}" class="hilo">
+
+                            <div class="conteiner-datos-hilo">
+                                <div>
+                                    <p th:text="${h.usuario.nombreDeUsuario}"></p>
+                                </div>
+
+                                <div>
+                                    <p style="font-size: 15px;">|</p>
+                                </div>
+
+                                <div>
+                                    <p th:text="'Iniciado: ' + ${#dates.format(h.fechaInicio , 'dd-MM-yyyy')}"></p>
+                                </div>
+
+                                <div>
+                                    <p style="font-size: 15px;">|</p>
+                                </div>
+
+                                <div>
+                                    <p th:text="'Actualizado: ' + ${#dates.format(h.fechaActualizacion , 'dd-MM-yyyy')}"></p>
+                                       </div>
+                                       </div>
+
+                                       <table>
+
+                                       <thead>
+
+                                       <tr>
+
+                                       <td><a th:href="@{/mensajes/discusion(id=${h.id})}"><button
+                                            th:text="${h.titulo}"></button></a>
+
+                                        </tr>
+
+                                        </thead>
+
+                                    <tbody class="conteiner-botones">
+
+                                        <tr sec:authorize="hasRole('ROLE_ADMIN')">
+
+                                            <td>
+
+                                                <ol>
+
+                                                    <div class="box-boton-editar">
+
+                                                        <li>
+
+                                                            <a th:href="@{/hilos/alta(id=${h.id})}">
+                                                                <button type="button" class="boton-editar" style="border-color: rgba(103, 69, 99); border-width: 1px; border-radius: 5px; margin-top: 20%; margin-left: 20%;">
+
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                         height="16" fill="currentColor" class="bi bi-check"
+                                                                         viewBox="0 0 16 16" style="color: rgba(103, 69, 99);">
+                                                                    <path
+                                                                        d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z" />
+                                                                    </svg>
+
+                                                                </button>
+
+                                                            </a>
+
+                                                        </li>
+
+                                                    </div>
+                                                </ol>
+
+
+                                            </td>
+
+                                        </tr>
+
+                                    </tbody>
+
+                                    </table>
+
+                                </div>
+
+                                </section>
+
+                                <aside>
+
+                                    <figure>
+
+                                        <img src="\img\pexels-cottonbro-4620871.jpg" alt="">
+
+                                    </figure>
+
+                                </aside>
+
+                                </section>
+
+                                </section>
+
+                                </main>
+
+                                <footer th:replace="/fragment/footer :: footer"></footer>
+
+                                <div th:replace="/fragment/bootstrap :: bootstrap"></div>
+
+                                </body>
+
+                                </html>

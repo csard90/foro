@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es-AR" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="/fragment/head :: head"></head>
+
+<body>
+
+    <header th:replace="/fragment/header :: header"></header>
+
+    <nav th:replace="/fragment/encabezado :: navbar"></nav>
+
+    <div th:replace="/fragment/errores :: errores"></div>
+
+    <main>
+
+        <section class="conteiner-buscador">
+
+            <div th:if="${vacio}!=null">
+                <h1 th:text="${vacio}" style="padding: 7%;text-align: center; font-size: 30px;"></h1>
+            </div>
+
+            <section class="conteiner-titulo-mensajebuscado">
+
+                <div th:each="m : ${lista}" class="titulo-mensajebuscado">
+
+                    <div class="conteiner">
+
+                        <div class="titulo">
+
+                            <a th:href="@{/mensajes/discusion(id=${m.hilo.id})} +'#'+${m.id}"
+                                th:text="${m.hilo.titulo}"></a>
+
+                        </div>
+
+                        <div class="mensaje">
+
+                            <p th:text="${m.mensaje}"></p>
+
+                        </div>
+
+                        <div class="botones">
+
+                            <a th:href="@{/mensajes/discusion(id=${m.hilo.id})} +'#'+${m.id} ">
+                                <button>Ir a la discusión
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                        class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                            d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" />
+                                    </svg>
+                                </button>
+                            </a>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </section>
+
+        </section>
+
+    </main>
+
+    <footer th:replace="/fragment/footer :: footer"></footer>
+
+    <div th:replace="/fragment/bootstrap :: bootstrap"></div>
+
+</body>
+
+</html>

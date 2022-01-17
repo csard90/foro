@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es-AR" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="/fragment/head :: head"></head>
+
+<body>
+
+    <header th:replace="/fragment/header :: header"></header>
+
+    <nav th:replace="/fragment/encabezado :: navbar"></nav>
+
+    <main class="conteiner-registro">
+
+        <section class="conteiner-formulario-registro">
+
+            <form th:action="@{/usuario/guardar}" method="POST" th:object=${usuario} class="formulario-registro">
+
+                <header>
+
+                    <div>
+                        <h1 class="encabezado-registro">Crea tu cuenta</h1>
+                    </div>
+
+                    <div th:replace="/fragment/errores :: errores"></div>
+
+                </header>
+
+                <section class="ingreso-datos">
+
+                    <div>
+                        <input th:field="*{id}" type="hidden">
+                    </div>
+
+                    <div class="box-dato">
+
+                        <label for="nombreDeUsuario" class="instruccion">Elija un <b>nombre de
+                                usuario</b>:</label><br>
+
+                        <div class="caja-texto">
+                            <input th:field="*{nombreDeUsuario}" type="text" class="form-control" id="nombreDeUsuario"
+                                name="nombreDeUsuario" placeholder="Ingrese un nombre" aria-label="Username"
+                                aria-describedby="basic-addon1">
+                        </div>
+
+                    </div>
+
+                    <div class="box-dato">
+
+                        <label for="email" class="instruccion">Ingrese su <b>e-mail</b>:</label><br>
+
+                        <div class="caja-texto">
+                            <input th:field="*{email}" type="email" class="form-control" id="email" name="email"
+                                placeholder="Ingrese un e-mail" aria-label="Username" aria-describedby="basic-addon1">
+                        </div>
+
+                    </div>
+
+                    <div class="box-dato">
+
+                        <label for="contrasena" class="instruccion">Ingrese una <b>contraseña</b>:</label><br>
+
+                        <div class="caja-texto">
+
+                            <input th:field="*{contrasena}" type="password" class="form-control" id="contrasena"
+                                name="contrasena" placeholder="Ingrese una contraseña" aria-label="Username"
+                                aria-describedby="basic-addon1">
+
+                        </div>
+                    </div>
+
+                    <div class="box-dato">
+
+                        <label for="contrasena" class="instruccion">Repita la <b>contraseña</b>:</label><br>
+
+                        <div class="caja-texto">
+
+                            <input type="password" class="form-control" id="contrasena2" name="contrasena2"
+                                placeholder="Ingrese una contraseña" aria-label="Username"
+                                aria-describedby="basic-addon1">
+
+                        </div>
+                    </div>
+
+                </section>
+
+                <div class="botones">
+
+                    <div class="box-boton-resetear">
+
+                        <button type="reset" class="boton-resetear">
+
+                            <svg xmlns="http://www.w3.org/2000/svg" style="color:white" width="16" height="16"
+                                fill="currentColor" class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z" />
+                                <path
+                                    d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z" />
+                            </svg>
+
+                        </button>
+
+                    </div>
+
+                    <div class="box-boton-registro">
+
+                        <button type="submit" class="boton-registro">Registrarme</button>
+                        
+                    </div>
+
+                </div>
+
+            </form>
+
+        </section>
+    </main>
+    <footer th:replace="/fragment/footer :: footer"></footer>
+
+    <div th:replace="/fragment/bootstrap :: bootstrap"></div>
+
+</body>
+
+</html>

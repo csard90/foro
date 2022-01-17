@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+
+<html lang="es-AR" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="/fragment/head :: head"></head>
+
+<body>
+
+    <header th:replace="/fragment/header :: header"></header>
+
+    <nav th:replace="/fragment/encabezado :: navbar"></nav>
+
+    <main>
+
+        <section class="conteiner-index">
+
+            <section class="conteiner-categorias-aside">
+
+                <section class="conteiner-categorias">
+
+                    <div th:replace="/fragment/errores :: errores"></div>
+
+                    <header>
+                        <h1>Categorías</h1>
+                    </header>
+
+
+                    <section class="conteiner-boton-crear-categoria">
+
+                        <a sec:authorize="hasRole('ROLE_ADMIN')" href="/categorias/crear-editar"><button>Crear
+                                Categoría</button></a>
+
+                    </section>
+
+                    <div th:each="c : ${categorias}" class="categoria">
+
+                        <table>
+
+                            <thead>
+
+                            <td><a th:href="@{/hilos(id=${c.id})}"><button th:text="${c.nombre}"></button></a>
+
+                            </thead>
+
+
+                            <tbody class="conteiner-botones" sec:authorize="hasRole('ROLE_ADMIN')">
+
+                                <tr>
+
+                                    <td>
+
+                                        <ol>
+
+                                            <div class="box-boton-editar">
+
+                                                <li>
+                                                    <a th:href="@{/categorias/crear-editar(id=${c.id})}"><button
+                                                            type="button" class="boton-editar">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                height="16" fill="currentColor"
+                                                                style="color: rgba(103, 69, 99);"
+                                                                class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                                                <path
+                                                                    d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                                                <path fill-rule="evenodd"
+                                                                    d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                                                            </svg>
+                                                        </button>
+                                                    </a>
+                                                </li>
+                                            </div>
+                                            <!--Editar-->
+
+                                            <div class="box-boton-dar-baja">
+                                                <li>
+                                                    <a th:href="@{/categorias/baja-categoria(idCategoria=${c.id})}"><button type="button"
+                                                            class="boton-dar-baja">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                height="16" fill="currentColor"
+                                                                style="color: rgba(103, 69, 99);" class="bi bi-trash"
+                                                                viewBox="0 0 16 16">
+                                                                <path
+                                                                    d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                                                                <path fill-rule="evenodd"
+                                                                    d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                                                            </svg>
+                                                        </button>
+                                                    </a>
+                                                </li>
+                                                <!--Dar de baja-->
+                                            </div>
+
+                                        </ol>
+
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </section>
+
+
+                <aside>
+
+                    <figure>
+
+                        <img src="\img\pexels-marcelo-moreira-1926620.jpg" alt="">
+
+                    </figure>
+
+                </aside>
+
+            </section>
+
+        </section>
+
+    </main>
+
+    <footer th:replace="/fragment/footer :: footer"></footer>
+
+    <div th:replace="/fragment/bootstrap :: bootstrap"></div>
+
+</body>
+
+</html>

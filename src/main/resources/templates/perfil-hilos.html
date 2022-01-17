@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+
+<html lang="es-AR" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="/fragment/head :: head"></head>
+
+<body>
+
+    <header th:replace="/fragment/header :: header"></header>
+
+    <nav th:replace="/fragment/encabezado :: navbar"></nav>
+
+    <main>
+
+        <section class="conteiner-perfil" th:object=${usuario}>
+
+            <section class="conteiner-foto-perfil">
+                <!--h w-->
+                <div class="conteiner-foto">
+                    <img th:if="*{fotoDePerfil}==null" src="\img\perfil-sin-foto.png" alt="Foto de perfil"
+                        class="foto-perfil">
+                    <img th:if="*{fotoDePerfil}!=null" th:src="'/foto/perfil/' + *{id}" alt="Foto de perfil"
+                        class="foto-perfil">
+                </div>
+
+            </section>
+
+            <section class="panel">
+
+                <section class="panel-datos">
+
+                    <section class="conteiner-datos-usuario">
+
+                        <header class="nombre-usuario">
+
+                            <h1 th:text="*{nombreDeUsuario}"></h1>
+
+                        </header>
+
+                        <div class="conteiner-resto-datos">
+
+                            <div>
+                                <p>Email: <span th:text="*{email}">ejemplo@dominio.com</span></p>
+                            </div>
+
+                            <div>
+                                <p>Género: <span th:text="*{genero}==null ? 'Sin especificar' : *{genero}"></span>
+                                </p>
+                            </div>
+
+                            <div>
+                                <p>Fecha de nacimiento: <span
+                                        th:text="*{fechaNacimiento}==null ? 'Sin especificar' : ${#dates.format( usuario.fechaNacimiento , 'dd-MM-yyyy')}"></span>
+                                </p>
+
+                            </div>
+
+                            <div>
+                                <p>Nacionalidad: <span
+                                        th:text="*{nacionalidad}==null  ? 'Sin especificar' : *{nacionalidad}"></span>
+                                </p>
+                            </div>
+
+                            <div>
+                                <p>Fecha en la que se unió a Beauty: <span
+                                        th:text="*{fechaDeAlta}==null ? 'Sin especificar' : ${#dates.format( usuario.fechaDeAlta , 'dd-MM-yyyy')}"></span>
+                                </p>
+                            </div>
+
+                            <div class="descripcion">
+                                <p><span
+                                        th:text="*{descripcion}==null ? 'No hay descripción aún' : *{descripcion}"></span></span>
+                                </p>
+                            </div>
+
+                        </div>
+
+                    </section>
+
+                    <section class="botones-panel" th:if="${session.usuario.id==usuario.id}">
+
+                        <div class="box-botones-panel-perfil">
+
+                            <a th:href="@{/usuario/editar-usuario(id=${session.usuario.id})}">
+                                <button type="submit" class="boton-editar">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                        <path
+                                            d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                        <path fill-rule="evenodd"
+                                            d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                                    </svg>
+                                </button>
+                            </a>
+
+                        </div>
+
+                    </section>
+
+                </section>
+
+            </section>
+
+        </section>
+
+        <!-- El segundo navbar del perfil -->
+        <nav class="navbar-secundario-perfil">
+
+            <ul class="menu">
+                <li><a class="" th:href="@{/usuario/perfil(id=${id})}">Hilos</a></li>
+                <li><a class="" th:href="@{/usuario/perfil-mensaje(id=${id})}">Mensajes</a></li>
+            </ul>
+
+        </nav>
+        <!-- El segundo navbar del perfil -->
+
+
+
+        <!-- Muestra los hilos del usuario  -->
+        <section th:if="${hilos!=null}">
+
+            <section class="hilos" style="padding-left: 25%;">
+
+                <section class="conteiner-hilos-aside">
+
+                    <section class="conteiner-hilos">
+
+                        <div th:each="h : ${hilos}" class="hilo">
+
+                            <div class="conteiner-datos-hilo">
+
+                                <div>
+                                    <p th:text="${h.usuario.nombreDeUsuario}"></p>
+                                </div>
+
+                                <div>
+                                    <p style="font-size: 15px;">|</p>
+                                </div>
+
+                                <div>
+                                    <p th:text="'Iniciado: ' + ${#dates.format(h.fechaInicio , 'dd-MM-yyyy')}"></p>
+                                </div>
+
+                                <div>
+                                    <p style="font-size: 15px;">|</p>
+                                </div>
+
+                                <div>
+                                    <p
+                                        th:text="'Actualizado: ' + ${#dates.format(h.fechaActualizacion , 'dd-MM-yyyy')}">
+                                    </p>
+                                </div>
+
+                            </div>
+
+                            <table>
+
+                                <thead>
+
+                                    <tr>
+
+                                        <td><a th:href="@{/mensajes/discusion(id=${h.id})}"><button
+                                                    th:text="${h.titulo}"></button></a>
+
+                                    </tr>
+
+                                </thead>
+                                <tbody class="conteiner-botones">
+
+                                    <tr sec:authorize="hasRole('ROLE_USER')"
+                                        th:if="${session.usuario.id}==${h.usuario.id}">
+
+                                        <td>
+
+                                            <ol>
+
+                                                <div class="box-boton-editar">
+
+                                                    <li>
+                                                        <a th:href="@{/hilos/crear(idHilo=${h.id})}">
+
+                                                            <button type="button" class="boton-editar">
+
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                    height="16" fill="currentColor"
+                                                                    style="color: rgba(103, 69, 99);"
+                                                                    class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                                                    <path
+                                                                        d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                                                    <path fill-rule="evenodd"
+                                                                        d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                                                                </svg>
+
+                                                            </button>
+
+                                                        </a>
+
+                                                    </li>
+
+                                                </div>
+
+                                                <div class="box-boton-dar-baja">
+
+                                                    <li>
+
+                                                        <a th:href="@{/hilos/baja(id=${h.id})}">
+
+                                                            <button type="button" class="boton-dar-baja">
+
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                    height="16" fill="currentColor"
+                                                                    style="color: rgba(103, 69, 99);"
+                                                                    class="bi bi-trash" viewBox="0 0 16 16">
+                                                                    <path
+                                                                        d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                                                                    <path fill-rule="evenodd"
+                                                                        d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                                                                </svg>
+
+                                                            </button>
+
+                                                        </a>
+
+                                                    </li>
+
+                                                </div>
+
+                                            </ol>
+
+                                        </td>
+
+                                    </tr>
+
+                                    <tr sec:authorize="hasRole('ROLE_ADMIN')">
+
+                                        <td>
+
+                                            <ol>
+
+                                                <div class="box-boton-editar">
+
+                                                    <li>
+
+                                                        <a th:href="@{/hilos/crear(idHilo=${h.id})}">
+                                                            <button type="button" class="boton-editar">
+
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                    height="16" fill="currentColor"
+                                                                    style="color: rgba(103, 69, 99);"
+                                                                    class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                                                    <path
+                                                                        d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                                                    <path fill-rule="evenodd"
+                                                                        d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                                                                </svg>
+
+                                                            </button>
+
+                                                        </a>
+
+                                                    </li>
+
+                                                </div>
+
+                                                <div class="box-boton-dar-baja">
+
+                                                    <li>
+
+                                                        <a th:href="@{/hilos/baja(id=${h.id})}">
+
+                                                            <button type="button" class="boton-dar-baja">
+
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                    height="16" fill="currentColor"
+                                                                    style="color: rgba(103, 69, 99);"
+                                                                    class="bi bi-trash" viewBox="0 0 16 16">
+                                                                    <path
+                                                                        d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                                                                    <path fill-rule="evenodd"
+                                                                        d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                                                                </svg>
+
+                                                            </button>
+
+                                                        </a>
+
+                                                    </li>
+
+                                                </div>
+
+                                            </ol>
+
+                                        </td>
+
+                                    </tr>
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                    </section>
+
+                </section>
+
+            </section>
+
+        </section>
+
+        <section th:if="${mensajes!=null}">
+
+            <section class="conteiner-buscador">
+
+                <div th:if="${vacio}!=null">
+                    <h1 th:text="${vacio}" style="padding: 7%;text-align: center; font-size: 30px;"></h1>
+                </div>
+
+                <section class="conteiner-titulo-mensajebuscado">
+
+                    <div th:each=" m : ${mensajes}" class="titulo-mensajebuscado">
+
+                        <div class="conteiner">
+
+                            <div class="titulo">
+
+                                <a th:href="@{/mensajes/discusion(id=${m.hilo.id})} +'#'+${m.id}"
+                                    th:text="${m.hilo.titulo}" style="font-size: 22px;"></a>
+
+                            </div>
+
+                            <div class="mensaje">
+
+                                <p th:text="${m.mensaje}"></p>
+
+                            </div>
+
+                            <div style="display: flex; width: 100%;">
+
+                                <div class="conteiner-fecha" style="width: 100%; color: grey">
+                                    <p th:text="${m.fecha}" class="date-mensaje"></p>
+                                </div>
+
+                                <div class="botones">
+
+                                    <a th:href="@{/mensajes/discusion(id=${m.hilo.id})}+'#'+${m.id}">
+                                        <button>Ir a la discusión
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                fill="currentColor" class="bi bi-arrow-right-circle"
+                                                viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd"
+                                                    d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" />
+                                            </svg>
+                                        </button>
+                                    </a>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </section>
+
+            </section>
+
+        </section>
+
+    </main>
+
+    <footer th:replace="/fragment/footer :: footer"></footer>
+
+    <div th:replace="/fragment/bootstrap :: bootstrap"></div>
+
+</body>
+
+</html>

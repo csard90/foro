@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html lang="es-AR" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="/fragment/head :: head"></head>
+
+<body>
+
+    <header th:replace="/fragment/header :: header"></header>
+
+    <nav th:replace="/fragment/encabezado :: navbar"></nav>
+
+    <main class="conteiner-login">
+
+        <section class="conteiner-formulario-login-registrarse">
+
+            <form th:action="@{/logincheck}" method="POST" enctype="" class="formulario-login">
+
+                <header>
+
+                    <h1>Iniciar sesión</h1>
+
+                    <div th:replace="/fragment/errores :: errores"></div>
+
+                </header>
+
+                <section class="ingreso-datos">
+
+                    <div class="box-dato">
+
+                        <input type="text" class="form-control" id="nombreDeUsuario" name="nombreDeUsuario"
+                            placeholder="Ingrese su nombre de usuario" aria-label="Username"
+                            aria-describedby="basic-addon1">
+
+                    </div>
+
+                    <div class="box-dato">
+
+                        <input type="password" class="form-control" id="contrasena" name="contrasena"
+                            placeholder="Ingrese su contraseña" aria-label="Username" aria-describedby="basic-addon1">
+
+                    </div>
+
+                    <div class="box-boton-ingresar">
+
+                        <button type="submit" class="boton-ingresar">Ingresar</button>
+
+                    </div>
+
+                </section>
+
+            </form>
+
+            <section class="sin-cuenta">
+
+                <p>¿No tienes una cuenta en Beauty? <a href="/usuario/registro"><b>Regístrate</b></a></p>
+
+            </section>
+
+        </section>
+
+    </main>
+
+    <footer th:replace="/fragment/footer :: footer"></footer>
+
+    <div th:replace="/fragment/bootstrap :: bootstrap"></div>
+
+</body>
+
+</html>

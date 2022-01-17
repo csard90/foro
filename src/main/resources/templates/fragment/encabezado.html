@@ -1,0 +1,35 @@
+<nav th:fragment="navbar" class="navbar-principal">
+
+    <ul class="menu">
+
+        <li><a class="active" href="/">Inicio</a></li>
+
+        <li sec:authorize="!isAuthenticated()" class="right"><a class="active" href="/login">Iniciar sesión</a></li>
+
+        <li sec:authorize="hasAnyRole('ADMIN','USER')" class="right"><a href="/usuario/perfil"><span sec:authentication="name"></span></a>
+            
+            <ul>
+                <li><a href="/usuario/perfil">Ver "Mi Perfil"</a></li>
+
+                <li><a th:href="@{/usuario/editar-usuario(id=${session.usuario.id})}">Editar perfil</a></li>
+
+                <li><a href="/logout">Cerrar sesión</a></li>
+
+            </ul>
+
+        </li>
+
+        <li class="right">
+
+            <form action="/search" method="post" class="buscador">
+                
+                <input name="busqueda" class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search"
+                    style="width: 22vw;">
+                <a class="boton"><button class="btn btn-outline-light" type="submit">Buscar</button></a>
+            </form>
+        </li>
+
+    </ul>
+
+</nav>
+<!-- sec:autorize="hasRole('ROLE_USER')" -->

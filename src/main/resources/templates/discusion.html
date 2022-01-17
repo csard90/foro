@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+
+<html lang="es-AR" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="/fragment/head :: head"></head>
+
+<body>
+
+    <header th:replace="/fragment/header :: header"></header>
+
+    <nav th:replace="/fragment/encabezado :: navbar"></nav>
+
+    <main>
+
+        <section class="conteiner-discusion">
+
+            <section class="conteiner-mensajescajatexto">
+
+                <section class="conteiner">
+
+                    <section class="conteiner-tabla">
+
+                        <header>
+                            <h1 th:text="${hilo.titulo}"></h1>
+                        </header>
+
+                        <div class="conteiner-respuesta" th:each=" mensaje : ${mensajes}" th:id="${mensaje.id}">
+
+                            <table>
+
+                                <tr>
+
+                                    <td class="conteiner-fotonombreusuario">
+
+                                        <div class="conteiner-foto">
+
+                                            <a th:href="@{/usuario/perfil(id=${mensaje.usuario.id})}">
+                                                <img th:if="${mensaje.usuario.fotoDePerfil}==null"
+                                                    src="\img\perfil-sin-foto.png" alt="Foto de perfil"
+                                                    class="foto-perfil">
+                                                <img th:if="${mensaje.usuario.fotoDePerfil}!=null"
+                                                    th:src="'/foto/perfil/' + ${mensaje.usuario.id}"
+                                                    alt="Foto de perfil" class="foto-perfil">
+                                            </a>
+
+                                        </div>
+
+                                        <div class="conteiner-nombreusuario">
+
+                                            <a th:href="@{/usuario/perfil(id=${mensaje.usuario.id})}"
+                                                th:text="${mensaje.usuario.nombreDeUsuario}"></a>
+
+                                        </div>
+
+                                    </td>
+
+                                    <td class="conteiner-fecha-mensaje-botones">
+
+                                        <div class="conteiner-fecha">
+                                            <p th:text="${mensaje.fecha}" class="date-mensaje"></p>
+                                        </div>
+
+                                        <div class="conteiner-mensaje">
+                                            <p th:text="${mensaje.mensaje}" class="text-mensaje"></p>
+                                        </div>
+
+                                        <div class="conteiner-botons">
+
+                                            <div sec:authorize="hasRole('ROLE_USER')"
+                                                th:if="${session.usuario.id}==${mensaje.usuario.id}">
+
+                                                <ol>
+
+                                                    <li>
+                                                        <a
+                                                            th:href="@{/mensajes/discusion}+'?id='+${mensaje.hilo.id}+'&idMensaje='+${mensaje.id}+'#bottom'"><button
+                                                                type="button"><svg xmlns="http://www.w3.org/2000/svg"
+                                                                    width="16" height="16" fill="currentColor"
+                                                                    style="color: rgba(103, 69, 99);"
+                                                                    class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                                                    <path
+                                                                        d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                                                    <path fill-rule="evenodd"
+                                                                        d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                                                                </svg>
+                                                            </button>
+                                                        </a>
+                                                    </li>
+
+                                                    <li>
+                                                        <a th:href="@{/mensajes/baja(id=${mensaje.id})}">
+                                                            <button type="button">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                    height="16" fill="currentColor"
+                                                                    style="color: rgba(103, 69, 99);"
+                                                                    class="bi bi-trash" viewBox="0 0 16 16">
+                                                                    <path
+                                                                        d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                                                                    <path fill-rule="evenodd"
+                                                                        d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                                                                </svg>
+                                                            </button>
+                                                        </a>
+                                                    </li>
+
+                                                </ol>
+
+                                            </div>
+
+                                            <div sec:authorize="hasRole('ROLE_ADMIN')">
+
+                                                <ol>
+
+                                                    <li>
+                                                        <a
+                                                            th:href="@{/mensajes/discusion}+'?id='+${mensaje.hilo.id}+'&idMensaje='+${mensaje.id}+'#bottom'">
+                                                            <button type="button">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                    height="16" fill="currentColor"
+                                                                    style="color: rgba(103, 69, 99);"
+                                                                    class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                                                    <path
+                                                                        d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                                                    <path fill-rule="evenodd"
+                                                                        d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                                                                </svg>
+                                                            </button>
+                                                        </a>
+                                                    </li>
+
+                                                    <li>
+                                                        <a th:href="@{/mensajes/baja(id=${mensaje.id})}">
+                                                            <button type="button">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                    height="16" fill="currentColor"
+                                                                    style="color: rgba(103, 69, 99);"
+                                                                    class="bi bi-trash" viewBox="0 0 16 16">
+                                                                    <path
+                                                                        d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                                                                    <path fill-rule="evenodd"
+                                                                        d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                                                                </svg>
+                                                            </button>
+                                                        </a>
+                                                    </li>
+
+                                                </ol>
+
+                                            </div>
+
+                                        </div>
+
+                                    </td>
+
+                                </tr>
+
+                            </table>
+
+                        </div>
+
+                    </section>
+
+                    <section sec:authorize="hasAnyRole('USER','ADMIN')" class="conteiner-cajatexto">
+
+                        <form th:action="@{/mensajes/guardar}" method="POST" th:object="${mensaje}">
+                            <input hidden th:field="${mensaje.id}">
+                            <textarea class="texto-message" placeholder="Ingrese un mensaje..."
+                                th:field="${mensaje.mensaje}" id="bottom"> </textarea>
+                            <input hidden th:field="${mensaje.fecha}">
+                            <input hidden th:field="${mensaje.alta}">
+                            <input hidden th:field="${mensaje.hilo.id}">
+                            <input hidden th:field="*{usuario}">
+                            <button type="submit" class="boton-creamensaje">Crear mensaje</button><br />
+                        </form>
+
+                    </section>
+
+                </section>
+
+            </section>
+
+        </section>
+
+    </main>
+
+    <div th:replace="/fragment/bootstrap :: bootstrap"></div>
+
+    <footer th:replace="/fragment/footer :: footer"></footer>
+
+</body>
+
+</html>

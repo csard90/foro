@@ -1,0 +1,1397 @@
+html {
+  min-height: 100%;
+  position: relative;
+  overflow: scroll;
+
+}
+
+body {
+    padding: 0%;
+    margin: 0%;
+    background: #fceede;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex-grow: 1;
+    min-height: 70vh;
+}
+
+/*-------------------------EMPIEZA EL HEADER -----------------------------*/
+
+.header-principal {
+    background-color: #674563; 
+    text-align: center;
+    line-height: 20vh;
+}
+
+
+.header-principal .imagen-banner {
+    width: 20%;
+    padding: 1.5%;
+    height: 100%;
+    line-height: 10vh;
+}
+
+/*-------------------------TERMINA EL HEADER --------------------------*/
+
+/* -------------------- EMPIEZA NAVBAR PRINCIPAL --------------------- */
+
+.navbar-principal {
+    text-align:center;
+    position: -webkit-sticky;
+    /* Safari */
+    position: sticky;
+    top: 0;
+    margin: 0%;
+}
+
+.navbar-principal .menu {
+    margin-bottom: 0;
+    padding: 0%;
+}
+
+.navbar-principal li {
+    line-height: 10vh;
+    position: relative;
+    padding-left: 0;
+    list-style: none;
+}
+
+.navbar-principal li ul {
+    position: absolute;
+}
+
+.navbar-principal a {
+    color: #ddd;
+    display: block;
+    padding: 0 2.5em;
+    text-decoration: none;
+    transition: .4s;
+}
+
+.navbar-principal a:hover {
+    background: rgba(116, 24, 119, 0.5);
+}
+
+/* ----- */
+.active {
+    background-color: #3F3351;
+}
+
+/*Primer nivel*/
+
+.navbar-principal > ul {
+    background: black;
+    display: table;
+    width: 100%;
+    height: 100%;
+}
+
+.navbar-principal > ul > li {
+    float: left;
+}
+
+/* ---- */
+.navbar-principal li.right {
+    float: right;
+}
+
+.navbar-principal > ul > li > ul {
+    right: 50%;
+}
+
+.navbar-principal .boton {
+    padding-right: 15%;
+    padding-left: 5%;
+}
+
+.navbar-principal .buscador {
+    background: none;
+    margin: 0;
+    display: flex; /* Dejar para que la lupa quede al lado*/
+    align-items: center;
+    justify-content: center;
+}
+
+.navbar-principal .boton:hover {
+    background:transparent;
+}
+
+/*Segundo nivel*/
+
+.navbar-principal li li {
+    background: #222;
+    width: 150%;
+    max-height: 0;
+    overflow: hidden;
+    transition: all .5s;
+    list-style-type: none;
+}
+
+.navbar-principal li:hover > ul > li {
+    max-height: 10em;
+    overflow: visible;
+}
+
+@media screen and (max-width: 600px) {
+
+    .navbar-principal li.right,
+    .navbar-principal li {
+        float: none;
+    }
+}
+
+/* ---------------- FINALIZA EL NAVBAR ----------------------*/
+
+/* ---------------- ACÁ EMPIEZA EL FOOTER PRINCIPAL ----------------------*/
+
+.pie-pagina {
+    width: 100%;
+    padding-left:3%;
+    padding-right: 3%;
+    padding-top: 3%;
+    padding-bottom: 1%;
+    background: black;
+    margin: 0%;
+
+}
+
+.pie-pagina .grupo-1 {
+    width: 100%;
+    max-width: 1800px;
+    margin: 0;
+    display: flex;
+}
+
+.pie-pagina .grupo-1 .box-foto {
+    padding: 0%;
+    margin: 0%;
+}
+
+.pie-pagina .grupo-1 .box-foto figure {
+    margin: 0;
+    display: flex;
+    justify-content: center; /* centrar horizontalmente*/
+    align-items: center; /* centrar verticalmente*/
+    
+}
+
+.pie-pagina .grupo-1 .box-foto figure img {
+    width: 130px;
+}
+
+.pie-pagina .grupo-1  {
+    display: flex;
+
+    justify-content: space-between;
+    margin: 0%;
+    text-align: center;
+    width: 100%;
+
+}
+
+.pie-pagina .grupo-1  .box h2 {
+    color: #fff;
+    margin-bottom: 2%;
+    font-size: 18px;
+
+}
+
+.pie-pagina .grupo-1  .box p {
+    color: #efefef;
+    margin-bottom: 2%;
+}
+
+.pie-pagina .grupo-1  .box .red-social a {
+    display: inline-block;
+    text-decoration: none;
+    width: 45px;
+    height: 45px;
+    line-height: 45px;
+    color: #fff;
+    margin-right: 10px;
+    background-color: rgb(27, 26, 26);
+    text-align: center;
+    transition: all .3s ease;
+    
+}
+
+.pie-pagina .grupo-1  .box .red-social a:hover {
+    color: blueviolet;
+}
+
+.pie-pagina .grupo-2 {
+    padding: 1% 0%;
+    text-align: center;
+    color: #fff;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.pie-pagina .grupo-2 p {
+    margin-top: 40px;
+}
+
+.pie-pagina .grupo-2 hr {
+    border-color: rgb(201, 201, 201);
+    padding: 0.5px;
+    margin-bottom: 2px;
+}
+
+/* ------------------ TERMINA EL FOOTER -----------------------------*/
+
+/* ---------------- EMPIEZA EL REGISTRO ----------------------------*/
+
+.conteiner-registro {
+    background-image: url(img/pexels-anna-shvets-4482931.jpg);
+    background-size: cover;
+    padding: 0%;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+}
+
+.conteiner-registro .conteiner-formulario-registro {
+    background-color: rgba(252, 238, 222, 0.8);
+    background-size: cover;
+    width: 30%;
+    text-align: center;
+    border-radius: 30px;
+    padding-top: 3%;
+    padding-bottom: 3%;
+}
+
+.conteiner-registro .formulario-registro {
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.conteiner-registro .ingreso-datos {
+    justify-content: center;
+    box-sizing: inherit;
+    padding-bottom: 20px;
+}
+
+.conteiner-registro .box-dato {
+    text-align: left;
+    padding-bottom: 10px;
+}
+
+.conteiner-registro .instruccion {
+    padding-left: 15px;
+    color: rgb(95, 95, 95);
+}
+
+.conteiner-registro .form-control {
+    width: 95%;
+    border-radius: 10px;
+
+}
+
+.conteiner-registro .botones {
+    display: flex;
+    width: 100%;
+}
+
+.conteiner-registro .box-boton-resetear {
+    float: left;
+    margin-right: 21%;
+    margin-left: 2%;
+}
+
+.conteiner-registro .box-boton-registro {
+    float: right;
+    margin-left: 21%;
+}
+
+.conteiner-registro .boton-registro {
+    background: #3F3351;
+    border-radius: 10px;
+    border-color: #3F3351;
+    box-sizing: inherit;
+    justify-content: center;
+    text-align: center;
+    color: lavender;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 20px;
+    float: right;
+}
+
+.conteiner-registro .boton-resetear {
+    border-radius: 8px;
+    font-size: 15px;
+    padding-top: 3px;
+    padding-bottom: 4px;
+    padding-left: 8px;
+    padding-right: 5px;
+    border-color: #3F3351;
+    background-color: #3F3351;
+}
+
+/*---------------------TERMINA REGISTRO-----------------------*/
+
+/*---------------------EMPIEZA LOGIN-----------------------*/
+
+.conteiner-login {
+    background-image: url(img/pexels-jhong-pascua-3018845recorte.jpg);
+    background-size: cover;
+    padding: 0%;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+}
+
+.conteiner-login .conteiner-formulario-login-registrarse {
+    background-color: rgba(103, 69, 99, 0.8);
+    background-size: cover;
+    width: 30%;
+    border-radius: 30px;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    text-align: center;
+}
+
+.conteiner-login .formulario-login {
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.conteiner-login .formulario-login header h1 {
+    padding-bottom: 10px;
+    color: lavender;
+}
+
+.conteiner-login .ingreso-datos {
+    justify-content: center;
+    box-sizing: inherit;
+    padding-bottom: 20px;
+}
+
+.conteiner-login .box-dato {
+    padding-bottom: 20px;
+    padding-left: 10px;
+}
+
+.conteiner-login .form-control {
+    width: 95%;
+    border-radius: 10px;
+}
+
+.conteiner-login .boton-ingresar {
+    background: rgb(116, 24, 119);
+    border-color: rgb(116, 24, 119);
+    border-radius: 8px;
+    justify-content: center;
+    text-align: center;
+    color: lavender;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 18px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+.conteiner-login .sin-cuenta {
+    color: lavender;
+}
+
+/*---------------- TERMINA LOGIN ----------------------*/
+
+/*---------------- EMPIEZA PERFIL ---------------------*/
+
+.conteiner-perfil {
+    display: flex;
+    width: 100%;
+    padding: 5% 0%;
+}
+
+.conteiner-perfil .conteiner-foto-perfil {
+    margin-left: 5%;
+    width: 40%;
+    height: 40%;
+}
+
+.conteiner-perfil .conteiner-foto-perfil .conteiner-foto{
+    width: 100%;
+    height: 100%;
+    margin-top: 7%;
+}
+
+.conteiner-perfil .conteiner-foto-perfil .foto-perfil {
+    border-radius: 50%; 
+    width: 280px;
+    height: 280px;
+    max-height: 400px;
+    max-width: 400px;
+}
+
+.conteiner-perfil .panel {
+    padding: 0% 5%;
+    padding-left: 2%;
+    margin-right: 5%;
+    width: 100%;
+}
+.conteiner-perfil .panel-datos {
+    display: flex; 
+    background-color: rgba(103, 69, 99, 0.95); 
+    color: lavender; 
+    border-radius: 18px;
+    width: 100%;
+    height: 100%;
+    padding: 0%;
+}
+
+.conteiner-perfil .conteiner-datos-usuario {
+    padding: 2% 5%;
+    width: 100%;
+}
+
+.conteiner-perfil header h1 {
+    padding: 0%; 
+}
+
+.descripcion {
+    font-style: italic;
+    font-size: medium;
+}
+
+.conteiner-perfil .botones-panel {
+    padding: 3% 5%;
+
+}
+
+.conteiner-perfil .botones-panel .box-botones-panel-perfil {
+    padding: 3%;
+}
+
+.conteiner-perfil .botones-panel .box-botones-panel-perfil button {
+    border-radius: 8px; 
+    padding: 3px 8px; 
+    padding-bottom: 5px;
+    justify-content: center; 
+    text-align: center;
+    background-color: rgba(252, 238, 222, 0.87);
+    display: list-item;
+}
+
+/*--------- navbar perfil ------------*/
+
+.navbar-secundario-perfil {
+    text-align:center;
+    margin: 0%;
+}
+
+.navbar-secundario-perfil .menu {
+    margin-bottom: 0;
+    padding: 0%;
+}
+
+.navbar-secundario-perfil li {
+    line-height: 8vh;
+    padding-left: 0;
+    list-style: none;
+}
+
+.navbar-secundario-perfil a {
+    color: #ddd;
+    display: block;
+    padding: 0 2.5em;
+    text-decoration: none;
+    transition: .4s;
+}
+
+.navbar-secundario-perfil a:hover {
+    background: rgba(116, 24, 119, 0.5);
+}
+
+/* ----- */
+.active {
+    background-color: #3F3351;
+}
+
+/*Primer nivel*/
+
+.navbar-secundario-perfil > ul {
+    background: black;
+    display: table;
+    width: 100%;
+    height: 100%;
+}
+
+.navbar-secundario-perfil > ul > li {
+    float: left;
+}
+
+@media screen and (max-width: 600px) {
+
+    .navbar-secundario-perfil li.right,
+    .navbar-secundario-perfil li {
+        float: none;
+    }
+}
+
+/*----------------TERMINA PERFIL---------------------*/
+
+/*----------- EMPIEZA PANEL CONFIGURACIÓN ------------*/
+
+.conteiner-configuracion {
+    display: flex;
+    height: 100vh;
+}
+
+.conteiner-opciones-configuracion {
+    width: 40%;
+    background-color: rgba(131, 40, 120, 0.3);
+    background-size: cover;
+    text-align: center;
+}
+
+.opciones-configuracion {
+    padding: 5% 5%;
+    padding-top: 12%;
+}
+
+.box-opciones-configuracion {
+    padding: 4% 0%;
+    width: 100%;
+    height: auto;
+}
+
+.box-opciones-configuracion button {
+    background-color: rgba(131, 40, 120, 0.5);
+    width: 100%;
+    border-radius: 10px;
+    border: none;
+    justify-content: center;
+    text-align: center;
+    color: lavender;
+    font-size: 18px;
+    height: 2.5em;
+}
+
+.box-opciones-configuracion .active {
+    background-color: rgba(63, 51, 81, 0.7);
+}
+
+
+.conteiner-formulario-cambiar {
+    width: 100%;
+    padding: 2.5% 5%;
+}
+
+.conteiner-formulario-cambiar .instruccion {
+    padding-left: 0.5%;
+}
+
+.conteiner-ingreso-datos {
+    padding: 0% 1%;
+    height: 100%;
+}
+
+.conteiner-configuracion .ingreso-datos {
+    padding-top: 0%;
+    padding-bottom: 2%;
+}
+
+.conteiner-configuracion .caja-texto {
+    padding: 1% 0%;
+}
+
+.conteiner-configuracion .form-control {
+    width: 40%;
+    border-radius: 10px;
+}
+
+
+.conteiner-configuracion .conteiner-botones {
+    display: flex;
+    padding: 5% 2%;
+    padding-bottom: 0%;
+    width: 100%;
+
+}
+
+.conteiner-configuracion .conteiner-botones .box-boton-guardar {
+    width: 80%;
+    bottom: 0;
+}
+
+.conteiner-configuracion .conteiner-botones div button {
+    float: right;
+    background: rgba(116, 24, 119, 0.85);
+    border-color: rgb(116, 24, 119);
+    border-radius: 8px;
+    justify-content: center;
+    text-align: center;
+    color: lavender;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 18px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+/*---------------EMPIEZA CAMBIAR NOMBRE--------------------------*/
+
+#nombre-usuario {
+    height: 80vh;
+}
+
+/*----------------EMPIEZA CAMBIAR CONTRASEÑA---------------*/
+
+#contrasenia {
+    height: 95vh;
+}
+
+/*----------------EMPIEZA CAMBIAR EMAIL-------------------*/
+
+#email-cambiar {
+    height: 85vh;
+}
+
+/*---------------EMPIEZA PERSONALIZAR -------------------*/
+
+#perfil-cambiar {
+    height: 135vh;
+}
+
+.conteiner-configuracion .form-select {
+    width: 40%;
+    border-radius: 10px;
+}
+
+#descripcion {
+    width: 60%;
+    border-radius: 10px;
+}
+.conteiner-foto-configuracion {
+    width: 100%;
+}
+
+.foto-panel {
+    width: 100%; 
+    height: 100%;
+}
+
+#panel {
+    height: 80vh;
+}
+
+/*----------------EMPIEZA INICIO -----------------*/
+
+.conteiner-index {
+    padding: 0% 4.5%;
+}
+
+/*---botón de crear categoría---*/
+
+.conteiner-index .conteiner-boton-crear-categoria {
+    margin: 1%;
+}
+
+.conteiner-index .conteiner-boton-crear-categoria button{
+    background: rgb(63, 51, 81, 0.9);
+    border-color: rgba(63, 51, 81, 0.7);
+    border-radius: 8px;
+    justify-content: center;
+    text-align: center;
+    color: lavender;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 18px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+/*-------------------------*/
+
+.conteiner-index header {
+    padding-top: 2%;
+    padding-bottom: 1%;
+    justify-content: center;
+    text-align: center;
+}
+
+.conteiner-index header h1 {
+    font-size: 50px;
+}
+
+/*-------------------------*/
+
+.conteiner-index .conteiner-categorias-aside {
+    display: flex;
+}
+
+.conteiner-index .conteiner-categorias-aside .conteiner-categorias {
+    width: 60%;
+    background-color: rgba(131, 40, 120, 0.3);
+    padding: 2% 5%;
+    justify-content: center; 
+    margin-right: 10%; 
+    padding-bottom: 4%;
+    
+}
+
+.conteiner-index .conteiner-categorias-aside .conteiner-categorias .categoria {
+    width: 100%;
+    padding-bottom: 3%;
+}
+
+.conteiner-index .conteiner-categorias-aside .conteiner-categorias .categoria table{
+    border: 0px;
+    width: 100%;
+}
+
+.conteiner-index .conteiner-categorias .categoria thead button {
+    width: 100%;
+    background-color: rgba(131, 40, 120, 0.5);
+    border-color: rgb(116, 24, 119, 0.2);
+    border-radius: 20px;
+    background-size: cover;
+    justify-content: center;
+    text-align: center;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    font-size: 28px;
+    color: white;
+}
+
+/*--------------------------*/
+
+.conteiner-index .conteiner-botones {
+    display: flex;
+    padding-left: 0%;
+    width: 100%;
+
+}
+
+.conteiner-index .conteiner-botones ol {
+    display: flex;
+    padding-left: 5%;
+}
+
+.conteiner-index .conteiner-botones li {
+    list-style: none;
+}   
+
+.conteiner-index .conteiner-botones div button {
+    background: transparent;
+    border-color: rgba(103, 69, 99, 0.3);
+    border-radius: 8px;
+    justify-content: center;
+    text-align: center;
+    padding-left: 5px;
+    padding-right: 5px;
+    font-size: 14px;
+    padding-top: 3px;
+    padding-bottom: 5px;
+}
+
+/*-----------------------------*/
+
+.conteiner-index aside {
+    width: 30%;
+
+}
+
+.conteiner-index aside figure {
+    height: 100%;
+    width: 100%;
+
+}
+
+.conteiner-index aside img {
+    width: 100%;
+    border-radius: 30px;
+    margin-top: 30%;
+}
+
+/*---------------- TERMINA INICIO -------------------*/
+
+/*----------------- EMPIEZA HILOS --------------------*/
+
+.hilos {
+    padding: 0% 4.5%;
+}
+
+/*------------*/
+
+.hilos .conteiner-hilos-aside {
+    display: flex;
+}
+
+.hilos .conteiner-hilos-aside .conteiner-hilos {
+    background-color: rgba(255, 255, 255, 0.5);
+    /*background-color: rgba(131, 40, 120, 0.2);*/
+    width: 70%;
+    padding: 2% 5%;
+    padding-bottom: 4%;
+    justify-content: center; 
+    margin-right: 7%; 
+}
+
+/*--------*/
+
+.hilos .conteiner-hilos-aside .conteiner-titulo-descripcion .conteiner-titulo {
+    width: 100%;
+    padding-top: 2%;
+    padding-bottom: 1%;
+}
+
+.hilos .conteiner-hilos-aside .conteiner-titulo-descripcion .conteiner-titulo h1 {
+    font-size: 40px;
+}
+
+/*--------*/
+
+.hilos .conteiner-hilos-aside .conteiner-botones-crear-hilos-inactivos {
+    margin-bottom: 4%;
+    display: flex;
+    width: 100%;
+}
+
+.hilos .conteiner-hilos-aside .conteiner-botones-crear-hilos-inactivos .box-boton-crear {
+    width: 20%;
+}
+
+.hilos .conteiner-hilos-aside .conteiner-botones-crear-hilos-inactivos .box-boton-hilos-inactivos {
+    margin-left: 10%;
+    width: 20%;
+}
+.box-boton-hilos-activos {
+    width: 20%;
+}
+
+.hilos .conteiner-hilos-aside .conteiner-botones-crear-hilos-inactivos div button {
+    background-color: rgba(247, 206, 160, 0.8);
+    border-radius: 10px;
+    border-width: 1.8px;
+    background-size: cover;
+    justify-content: center;
+    text-align: center;
+    padding: 3% 1.5%;
+    color: rgb(53, 53, 53);
+    width: 100%;
+    border-color: #7a7d80;
+    font-weight: 500;
+}
+
+/*----------*/
+
+.hilos .conteiner-hilos-aside .conteiner-hilos .hilo {
+    margin-bottom: 3%;
+}
+
+.hilos .conteiner-hilos-aside .conteiner-hilos .hilo .conteiner-datos-hilo {
+    display: flex;
+    margin-left: 1.5%;
+}
+
+.hilos .conteiner-hilos-aside .conteiner-hilos .hilo .conteiner-datos-hilo div {
+    margin-right: 1%;
+}
+
+.hilos .conteiner-hilos-aside .conteiner-hilos .hilo .conteiner-datos-hilo div p {
+    margin-bottom: 0%;
+    font-size: small;
+    color: #7a7d80;
+}
+
+.hilos .conteiner-hilos-aside .conteiner-hilos .hilo table {
+    border: 0px;
+    width: 100%;
+}
+
+.hilos .conteiner-hilos-aside .conteiner-hilos .hilo table thead button{
+    font-size: 22px;
+    width: 100%;
+    justify-content: left;
+    text-align: left;
+    background-color: rgb(255, 218, 175, 0.8);
+    color: black;
+    border: none;
+    border-radius: 7px;
+    padding: 0.6% 2%;
+}
+
+/*---------*/
+
+.hilos .conteiner-hilos-aside .conteiner-hilos .hilo table .conteiner-botones {
+    display: flex;
+    padding-left: 0%;
+    width: 100%;
+    height: 5%;
+}
+
+.hilos .conteiner-hilos-aside .conteiner-hilos .hilo table .conteiner-botones ol {
+    display: flex;
+    padding-left: 20%;
+}
+
+.hilos .conteiner-hilos-aside .conteiner-hilos .hilo table .conteiner-botones li {
+    list-style: none;
+}   
+
+.hilos .conteiner-hilos-aside .conteiner-hilos .hilo table .conteiner-botones td {
+    height: 5px;
+}
+.hilos .conteiner-hilos-aside .conteiner-hilos .hilo table .conteiner-botones .box-boton-editar {
+    padding-right: 50%;
+}
+
+.hilos .conteiner-hilos-aside .conteiner-hilos .hilo table .conteiner-botones div button {
+    background: transparent;
+    border-color: transparent;
+    justify-content: center;
+    text-align: center;
+    font-size: 14px;
+}
+
+/*---------*/
+
+.hilos aside {
+    width: 30%;
+
+}
+
+.hilos aside figure {
+    height: 100%;
+    width: 100%;
+
+}
+
+.hilos aside img {
+    width: 100%;
+    border-radius: 30px;
+    margin-top: 20%;
+}
+
+/* ----------------- TERMINA HILOS --------------------*/
+
+/*------------- EMPIEZA ERRORES y ERROR ---------------*/
+
+.conteiner-error {
+    font-size: 100%;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    margin-top: 10%;
+}
+
+.conteiner-error .codigo-error {
+    font-size: 350%;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    font-weight:  bolder;
+    color:#674563;
+}
+
+.conteiner-error .mensaje-error {
+    font-size: 200%;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    color:#674563;
+}
+
+#exito {
+    width: 100%; 
+    text-align: center; 
+    font-size: 24px;
+    margin: 0%;
+    padding-bottom: 0%;
+}
+
+/*------------ TERMINA ERRORES y ERROR -----------*/
+
+/*---------------EMPIEZA CREAR HILO---------------*/
+
+.conteiner-creacionhilo {
+    background-image: url(img/pexels-emma-bauso-2253832.jpg);
+    background-size: cover;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+    padding: 0%;
+}
+
+.conteiner-creacionhilo .conteiner-crearhilo{
+    background-color: rgba(103, 69, 99, 0.8);
+    background-size: cover;
+    width: 40%;
+    border-radius: 30px;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    text-align: center;
+}
+
+.conteiner-creacionhilo .conteiner-crearhilo .formulario-creahilo {
+    width: 80%;
+    margin-left: 10%;
+}
+
+.conteiner-creacionhilo .conteiner-crearhilo header {
+    width: 100%;
+}
+
+.conteiner-creacionhilo .conteiner-crearhilo header h1{
+    padding-bottom: 2%;
+    color: lavender;
+} 
+
+.conteiner-creacionhilo .conteiner-crearhilo .ingresodata{
+    justify-content: center;
+    box-sizing: inherit;
+    color: lavender;
+    width: 100%;
+}
+
+.conteiner-creacionhilo .conteiner-crearhilo .ingresodata .box-dato {
+    margin-top: 3%;
+    font-size: 24px;
+}
+
+.conteiner-creacionhilo .title-text{
+    padding-bottom: 2%;
+    padding-top: 1%;
+    padding-left: 10px;
+    width: 100%;
+    height: 50%;
+    border-radius: 10px;
+    font-size: 19px;
+}
+
+.conteiner-creacionhilo .message-text{
+    padding-bottom: 2%;
+    padding-bottom: 1%;
+    padding-left: 10px;
+    width: 100%;
+    height: 20vh;
+    border-radius: 10px;  
+    font-size: 19px;
+    resize: none;
+}
+
+  /*botón - enviar*/ 
+  .conteiner-creacionhilo .conteiner-crearhilo .ingresodata .box-boton-crear-modificar  button {
+    background: rgb(116, 24, 119);
+    border-color: rgb(116, 24, 119);
+    border-radius: 8px;
+    justify-content: center;
+    text-align: center;
+    color: lavender;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 18px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    margin-top: 4%;
+}
+     
+
+/*----------------TERMINA CREAR HILO---------------*/
+
+/*----------------EMPIEZA DISCUSION---------------*/
+
+.conteiner-discusion{
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+}
+
+.conteiner-mensajescajatexto{
+    width: 60%;
+    background-color: rgba(131, 40, 120, 0.3);
+    margin-left: 20%;
+    padding-bottom: 1.5%;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+
+}
+.conteiner-mensajescajatexto .conteiner {
+    width: 75%;
+    margin-left: 12.5%;
+}
+
+.conteiner-discusion .conteiner-tabla{
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    padding-top: 0;
+}
+
+.conteiner-discusion .conteiner-tabla header{
+    background: rgba(252, 238, 222, 0.8);
+    width: 100%;
+    padding-top: 2%;
+}
+
+.conteiner-discusion .conteiner-tabla header h1{
+    text-align: left;
+    margin-bottom:0%;
+    margin-left: 4%; 
+    color: rgba(103, 69, 99, 0.8);
+}
+
+.conteiner-discusion .conteiner-tabla .conteiner-respuesta{
+    margin-bottom: 4%;
+    padding: 3% 0%;
+    background-color: rgba(252, 238, 222, 0.8);
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+.conteiner-discusion .conteiner-tabla table { 
+    width: 100%;
+    font-size: 20px;
+    border-collapse:collapse;
+    margin: auto;
+} 
+
+.conteiner-discusion .conteiner-tabla .conteiner-fotonombreusuario{
+
+    text-align: center;
+    font-weight: bolder; 
+    width: 28%;
+}
+
+.conteiner-discusion .conteiner-tabla .conteiner-fotonombreusuario .conteiner-foto a img{
+    height: 95px;
+    width: 95px;
+    border-radius: 50%;
+}
+
+.conteiner-discusion .conteiner-tabla .conteiner-fotonombreusuario .conteiner-nombreusuario{
+    margin-top: 3%;
+}
+
+.conteiner-discusion .conteiner-tabla .conteiner-fotonombreusuario .conteiner-nombreusuario a{
+    text-decoration: none;
+    color: #67456399;
+}
+
+.conteiner-discusion .conteiner-tabla .conteiner-fecha-mensaje-botones{
+   width: 80%;
+}
+
+.conteiner-discusion .conteiner-tabla .conteiner-fecha-mensaje-botones .conteiner-fecha{
+   color:rgb(95, 95, 95,0.5);
+   margin-right: 3%;   
+}
+
+.conteiner-discusion .conteiner-tabla .conteiner-fecha-mensaje-botones .conteiner-fecha p{
+    margin-bottom: 1%;
+    text-align: right;
+    font-size: 18px;
+}
+
+.conteiner-discusion .conteiner-tabla .conteiner-fecha-mensaje-botones .conteiner-mensaje{
+    font-size: 18px;
+    margin-right: 3%;
+}
+
+
+.conteiner-discusion .conteiner-tabla .conteiner-fecha-mensaje-botones .conteiner-botons{
+    margin-right: 2%;
+    margin-bottom: 2%;
+}
+
+.conteiner-discusion .conteiner-tabla .conteiner-fecha-mensaje-botones .conteiner-botons ol{
+    display: flex;
+    list-style: none;
+    margin-bottom: 0%;
+    padding-left: 0%;
+    justify-content: right;
+    width: 100%;
+}
+
+.conteiner-discusion .conteiner-tabla .conteiner-fecha-mensaje-botones .conteiner-botons ol button {
+    border: none; 
+    background: transparent;
+    margin-right: 50%;
+}
+
+.conteiner-discusion .conteiner-mensajescajatexto .conteiner-cajatexto .texto-message{
+    display: block;
+    margin-left: 15%;
+    margin-right: auto;
+    color: #212529;
+    background-color: #fff;
+    border: 1px solid #ced4da;
+    resize: none;
+    border-radius: 10px;
+    font-size: 17px;
+    text-align: center;
+    padding-right: 10px;
+    padding-left: 10px;
+    justify-content: center;
+    width: 70%;
+    height: 17vh;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+
+.conteiner-discusion .conteiner-mensajescajatexto .conteiner-cajatexto .boton-creamensaje{
+    background: rgb(116, 24, 119);
+    border-color: rgb(116, 24, 119);
+    border-radius: 8px;
+    justify-content: center;
+    text-align: center;
+    color: lavender;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 18px;
+    padding-top: 5px;
+    padding-bottom: 3px;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 2%;
+} 
+
+/*----------------TERMINA DISCUSION---------------*/
+
+/*------------ EMPIEZA CREAR CATEGORÍA --------------*/
+
+.conteiner-cargar-categoria {
+    background-image: url(/img/pexels-anderson-guerra-1115128.jpg);
+    background-size: cover;
+    padding: 0%;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+}
+
+.conteiner-cargar-categoria .conteiner-formulario-cargar-categoria {
+    background-color: rgba(252, 238, 222, 0.8);
+    background-size: cover;
+    width: 40%;
+    border-radius: 30px;
+    padding-top: 2.5%;
+    padding-bottom: 2%;
+    text-align: center;
+}
+
+.conteiner-cargar-categoria .formulario-cargar-categoria {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.conteiner-cargar-categoria .formulario-cargar-categoria header {
+    width: 100%;
+}
+
+.conteiner-cargar-categoria .formulario-cargar-categoria header h1 {
+    margin-bottom: 3%;
+    color: black;
+}
+
+.conteiner-cargar-categoria .formulario-cargar-categoria .ingreso-campos {
+    justify-content: center;
+    box-sizing: inherit;
+    padding-bottom: 5%;
+}
+
+.conteiner-cargar-categoria .formulario-cargar-categoria .ingreso-campos .box-dato {
+    margin-top: 3%;
+}
+
+.conteiner-cargar-categoria .formulario-cargar-categoria .ingreso-campos .box-dato .form-control {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.conteiner-cargar-categoria .formulario-cargar-categoria .ingreso-campos .box-boton-crear button {
+    background: rgb(116, 24, 119);
+    border-color: rgb(116, 24, 119);
+    border-radius: 8px;
+    justify-content: center;
+    text-align: center;
+    color: lavender;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 18px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    margin-top: 4%;
+}
+
+/*------------ TERMINA CREAR CATEGORÍA ---------------*/
+
+/*-------------- EMPIEZA BUSCADOR --------------*/
+
+.conteiner-buscador{
+    width: 80%;
+    background-color: rgba(255, 255, 255, 0.3);
+    margin-left: 10%;
+    padding-bottom: 1.5%;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.conteiner-buscador .conteiner-titulo-mensajebuscado {
+    width: 84%;
+    margin-left: 8%;
+    padding: 5% 0%;
+}
+
+.conteiner-buscador .conteiner-titulo-mensajebuscado .titulo-mensajebuscado {
+    background-color: rgb(255, 218, 175, 0.8);
+    margin-bottom: 3%;
+    border-radius: 10px;
+    padding: 1% 0%;
+    padding-bottom: 2%;
+} 
+
+.conteiner-buscador .conteiner-titulo-mensajebuscado .titulo-mensajebuscado .conteiner{
+    width: 95%;
+    margin-left: 2.5%;
+}
+.conteiner-buscador .conteiner-titulo-mensajebuscado .titulo-mensajebuscado .titulo {
+    padding-bottom: 1%;
+}
+
+.conteiner-buscador .conteiner-titulo-mensajebuscado .titulo-mensajebuscado .titulo a {
+    color: #674563;
+    text-decoration: none;
+    font-size: 24px;
+    width: 90%;
+    padding: 0%;
+}
+
+.conteiner-buscador .conteiner-titulo-mensajebuscado .titulo-mensajebuscado .mensaje p{
+    margin-bottom: 0.1%;
+}
+
+.conteiner-buscador .conteiner-titulo-mensajebuscado .titulo-mensajebuscado .botones {
+    width: 100%;
+    text-align: right;
+}
+
+.conteiner-buscador .conteiner-titulo-mensajebuscado .titulo-mensajebuscado .botones button {
+    background: transparent;
+    border: 0;
+    padding: 0%;
+    padding-right: 1%;
+}
+
+/*----------------TERMINA BUSCADOR ---------------*/

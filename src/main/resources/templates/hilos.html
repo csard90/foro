@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+
+<html lang="es-AR" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+    <head th:replace="/fragment/head :: head"></head>
+
+    <body>
+
+        <header th:replace="/fragment/header :: header"></header>
+
+        <nav th:replace="/fragment/encabezado :: navbar"></nav>
+
+        <main>
+
+            <section class="hilos">
+
+                <section class="conteiner-hilos-aside">
+
+                    <section class="conteiner-hilos">
+
+                        <header class="conteiner-titulo-descripcion">
+
+                            <section class="conteiner-titulo">
+
+                                <h1 th:text="${categoria.nombre}"></h1>
+
+                            </section>
+
+                            <section class="conteiner-descripcion">
+                                <p th:text="${categoria.descripcion}"></p>
+                            </section>
+
+                        </header>
+
+                        <div class="conteiner-botones-crear-hilos-inactivos">
+
+                            <div class="box-boton-crear">
+                                <a sec:authorize="hasAnyRole('USER','ADMIN')"
+                                   th:href="@{/hilos/crear(id=${param.id})}"><button class="boton-crear">Iniciar
+                                        hilo</button></a>
+                            </div>
+
+                            <div class="box-boton-hilos-inactivos">
+                                <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/hilos/inactivos(id=${categoria.id})}"><button class="boton-hilos-inactivos">Hilos inactivos</button></a>
+                            </div>
+
+                        </div>
+                        <div th:if="${vacio}!=null">
+                            <p style="font-size: 20px" th:text="${vacio}"</p>
+                        </div>
+                        <div th:each="h : ${hilos}" class="hilo">
+
+                            <div class="conteiner-datos-hilo">
+                                <div>
+                                    <p th:text="${h.usuario.nombreDeUsuario}"></p>
+                                </div>
+
+                                <div>
+                                    <p style="font-size: 15px;">|</p>
+                                </div>
+
+                                <div>
+                                    <p th:text="'Iniciado: ' + ${#dates.format(h.fechaInicio , 'dd-MM-yyyy')}"></p>
+                                </div>
+
+                                <div>
+                                    <p style="font-size: 15px;">|</p>
+                                </div>
+
+                                <div>
+                                    <p th:text="'Actualizado: ' + ${#dates.format(h.fechaActualizacion , 'dd-MM-yyyy')}"></p>
+                                </div>
+                            </div>
+
+                            <table>
+
+                                <thead>
+
+                                    <tr>
+
+                                        <td><a th:href="@{/mensajes/discusion(id=${h.id})}"><button
+                                                    th:text="${h.titulo}"></button></a>
+
+                                    </tr>
+
+                                </thead>
+
+                                <tbody class="conteiner-botones">
+
+                                    <tr sec:authorize="hasRole('ROLE_USER')" th:if="${session.usuario.id}==${h.usuario.id}">
+
+                                        <td>
+
+                                            <ol>
+
+                                                <div class="box-boton-editar">
+
+                                                    <li>
+                                                        <a th:href="@{/hilos/crear(idHilo=${h.id})}">
+
+                                                            <button type="button" class="boton-editar">
+
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                     height="16" fill="currentColor"
+                                                                     style="color: rgba(103, 69, 99);"
+                                                                     class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                                                <path
+                                                                    d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                                                <path fill-rule="evenodd"
+                                                                      d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                                                                </svg>
+
+                                                            </button>
+
+                                                        </a>
+
+                                                    </li>
+
+                                                </div>
+                                                <!--Editar-->
+
+                                                <div class="box-boton-dar-baja">
+
+                                                    <li>
+
+                                                        <a th:href="@{/hilos/baja(id=${h.id})}">
+
+                                                            <button type="button" class="boton-dar-baja">
+
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                     height="16" fill="currentColor"
+                                                                     style="color: rgba(103, 69, 99);" class="bi bi-trash"
+                                                                     viewBox="0 0 16 16">
+                                                                <path
+                                                                    d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                                                                <path fill-rule="evenodd"
+                                                                      d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                                                                </svg>
+
+                                                            </button>
+
+                                                        </a>
+
+                                                    </li>
+                                                    <!--Dar de baja-->
+
+                                                </div>
+
+                                            </ol>
+
+                                        </td>
+
+                                    </tr>
+
+                                    <tr sec:authorize="hasRole('ROLE_ADMIN')">
+
+                                        <td>
+
+                                            <ol>
+
+                                                <div class="box-boton-editar">
+
+                                                    <li>
+
+                                                        <a th:href="@{/hilos/crear(idHilo=${h.id})}">
+                                                            <button type="button" class="boton-editar">
+
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                     height="16" fill="currentColor"
+                                                                     style="color: rgba(103, 69, 99);"
+                                                                     class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                                                <path
+                                                                    d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                                                <path fill-rule="evenodd"
+                                                                      d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                                                                </svg>
+
+                                                            </button>
+
+                                                        </a>
+
+                                                    </li>
+
+                                                </div>
+                                                <!--Editar-->
+
+                                                <div class="box-boton-dar-baja">
+
+                                                    <li>
+
+                                                        <a th:href="@{/hilos/baja(id=${h.id})}">
+
+                                                            <button type="button" class="boton-dar-baja">
+
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                     height="16" fill="currentColor"
+                                                                     style="color: rgba(103, 69, 99);" class="bi bi-trash"
+                                                                     viewBox="0 0 16 16">
+                                                                <path
+                                                                    d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                                                                <path fill-rule="evenodd"
+                                                                      d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                                                                </svg>
+
+                                                            </button>
+
+                                                        </a>
+
+                                                    </li>
+                                                    <!--Dar de baja-->
+
+                                                </div>
+
+                                            </ol>
+
+                                        </td>
+
+                                    </tr>
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                    </section>
+
+                    <aside>
+
+                        <figure>
+
+                            <img src="\img\pexels-cottonbro-4620871.jpg" alt="">
+
+                        </figure>
+
+                    </aside>
+
+                </section>
+
+            </section>
+
+        </main>
+
+        <footer th:replace="/fragment/footer :: footer"></footer>
+
+        <div th:replace="/fragment/bootstrap :: bootstrap"></div>
+
+    </body>
+
+</html>

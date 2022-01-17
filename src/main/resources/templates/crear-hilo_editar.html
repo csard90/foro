@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html lang="es-AR" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="/fragment/head :: head"></head>
+
+<body>
+
+    <header th:replace="/fragment/header :: header"> </header>
+
+    <nav th:replace="/fragment/encabezado :: navbar"> </nav>
+
+    <main class="conteiner-creacionhilo">
+
+        <section class="conteiner-crearhilo">
+
+            <form th:action="@{/hilos/guardar}" method="POST" th:object="${hilo}" class="formulario-creahilo">
+
+                <header>
+
+                    <h1 th:if="${hilo.id==null}">Crear un hilo</h1>
+                    <h1 th:if="${hilo.id!=null}">Modificar hilo</h1>
+                    <div th:replace="/fragment/errores :: errores"></div>
+
+                </header>
+
+                <input hidden th:field="${hilo.id}">
+
+                <section class="ingresodata">
+                    
+                    <div>
+                        <input hidden th:field="${hilo.fechaInicio}">
+                        <input hidden th:field="${hilo.fechaActualizacion}">
+                        <input hidden th:field="${hilo.alta}">
+                        <input hidden th:field="${hilo.categoria.id}">
+                        <input hidden th:field="${hilo.usuario.id}">
+                    </div>
+
+                    <div class="box-dato">
+                        <label for="titulo">Título:</label><br>
+                        <input id="titulo" class="title-text" type="text" th:field="${hilo.titulo}" placeholder="Ingrese un título"> 
+                    </div>
+
+                    <div class="box-dato">
+                        <label for="mensaje">Mensaje:</label><br>
+                        <textarea name="mensaje" th:text="${mensaje.mensaje}" class="message-text" placeholder="Ingrese un mensaje para el hilo"></textarea>
+                    </div>
+
+                    <div class="box-boton-crear-modificar">
+                        <button type="submit" th:if="${hilo.id==null}">Crear</button>
+                        <button type="submit" th:if="${hilo.id!=null}">Editar</button>
+                    </div>
+
+            </form>
+
+        </section>
+
+    </main>
+
+    <div th:replace="/fragment/bootstrap :: bootstrap"></div>
+
+    <footer th:replace="/fragment/footer :: footer"></footer>
+
+</body>
+
+</html>

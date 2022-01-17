@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html lang="es-AR" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="/fragment/head :: head"></head>
+
+<body>
+
+    <header th:replace="/fragment/header :: header"></header>
+
+    <nav th:replace="/fragment/encabezado :: navbar"></nav>
+
+    <main class="conteiner-cargar-categoria">
+
+        <section class="conteiner-formulario-cargar-categoria">
+
+            <form th:action="@{/categorias/save}" method="POST" th:object=${categoria}
+                class="formulario-cargar-categoria">
+
+                <header>
+
+                    <h1 th:if="${categoria.id==null}">Crear una categoría</h1>
+
+                    <h1 th:if="${categoria.id!=null}">Modificar categoría</h1>
+
+                    <div th:replace="/fragment/errores :: errores"></div>
+
+                </header>
+
+                <section class="ingreso-campos">
+
+                    <div>
+                        <input th:field="*{id}" type="hidden">
+                    </div>
+
+                    <div class="box-dato">
+                        <label for="nombreDecategoria"><b>Título de la categoría:</b></label><br>
+                        <input th:field="*{nombre}" class="form-control" type="text" id="nombreDecategoria"
+                            placeholder="Ingrese el nombre de la categoría" aria-label="Username"
+                            aria-describedby="basic-addon1">
+                    </div>
+
+                    <div class="box-dato">
+                        <label for="descripcioncategoria"><b>Descripción de la categoría:</b></label><br>
+                        <input th:field="*{descripcion}" class="form-control" type="text" id="descripcioncategoria"
+                            placeholder="Ingrese la descripción de la categoría" aria-label="Username"
+                            aria-describedby="basic-addon1">
+                    </div>
+
+                    <div class="box-boton-crear">
+                        <button type="submit" th:if="${categoria.id==null}">Crear</button>
+                        <button type="submit" th:if="${categoria.id!=null}">Editar</button>
+                    </div>
+
+                </section>
+
+            </form>
+
+        </section>
+    </main>
+
+    <footer th:replace="/fragment/footer :: footer"></footer>
+
+    <div th:replace="/fragment/bootstrap :: bootstrap"></div>
+</body>
+
+</html>
